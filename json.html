@@ -1,5 +1,44 @@
 <!DOCTYPE html>
 <html>
 <body>
+	<h2>Enter your car's info</h2>
+	<label for="Make">Make:</label> <input type="text" id="Make"><br/><br/>
+	<label for="Model">Model:</label> <input type="text" id="Model"><br/><br/>
+	<label for="Year">Make:</label> <input type="text" id="Year"><br/><br/>
+	<button onclick="parse()">Parse</button>
+	<button onclick="stringify()">Stringify</button>
+	<p id="par">Parse:</p>
+	<p id="string">Stringify:</p>
+	
+<script>
+	function parse() {
+		var car = getJson();
+		var temp = JSON.stringify(car);
+		var string = JSON.parse(temp);
+		document.getElementById('par').innerHTML = string.Make  + ", " +
+		                                           string.Model + ", " +
+		                                           string.Year;
+	}
+
+	function stringify() {
+		var car = getJson()
+		var string = JSON.stringify(car);
+		document.getElementById('string').innerHTML = string;
+    }
+
+	function getJson() {
+		var make  = document.getElementById('Make').value;
+		var model = document.getElementById('Model').value;
+		var year  = document.getElementById('Year').value;
+
+		var vehicle = {
+			Make:make,
+			Model:model,
+			Year:year
+		}
+		return vehicle;
+	}
+
+</script>
 </body>
 </html>
