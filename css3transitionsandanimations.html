@@ -1,5 +1,114 @@
 <!DOCTYPE html>
 <html>
+<head>
+<style>
+body {
+  padding: 50px;
+}
+ 
+.box1 {
+  font-size: 40px;
+  background: red;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  animation-name: myframes;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+}
+
+@keyframes myframes {
+  0%, 45% { width: 200px;}
+  30%, 70% {width: 300px; color: blue;}
+  100% { width: 400px; color: green; 
+       background: orange;}
+}
+
+.is-paused {
+  animation-play-state: paused; 
+}
+
+.fill1:hover {
+  box-shadow: 0px 4px 32px black;
+}
+
+.fill2:focus {
+  box-shadow: 0px 4px 32px rgba(0,0,0,0.5); 
+}
+
+.trigger {
+  width: 200px;
+  height: 200px;
+  border: 20px solid #999;
+  background: #ddd;
+}
+
+.box2 {
+  width: 200px;
+  height: 200px;
+  background: red;
+  transition: transform 500ms cubic-bezier(.23,-1.5,.71,1.5);, opacity 5s; 
+}
+ 
+.trigger.clicked .box2 {
+  transform: translate(200px, 150px) rotate(20deg);
+  opacity: .5;
+}
+
+.loadIn {
+  border-style: solid;
+  border-width: 2px 10px 4px 20px;
+  opacity: 0;
+  transition: opacity 500ms ease-in;
+}
+
+.open {
+  opacity: 1;
+}
+</style>
+<script type="text/javascript">
+function toggle() {
+  document.getElementById("box1").classList.toggle("is-paused");  
+}
+
+function move() {
+  document.getElementById("trigger").classList.toggle("clicked");
+}
+
+function fadeIn() {
+  document.getElementById("books").classList.toggle("open");
+}
+</script>
+</head>
 <body>
+	 <div class='box1' id="box1" onclick="toggle()"><p>Animation</br> Is </br> Fun</p></div> </br>
+<h3>Click on the box above to stop the maddness</h3></br>
+<label for="Hover">Hover:</label><input type="text" class="fill1">
+<label for="Focus">Focus:</label><input type="text" class="fill2"></br></br>
+<h3> click on the box to make it move </h3>
+  <div class="trigger" id="trigger" onclick="move()">
+    <div class="box2"></div>
+  </div><br/>
+<input type="button" onclick="fadeIn()" value="Load a table"><br/><br/>
+<table class="loadIn" id="books">
+  <tr>
+    <th>Book</th>
+    <th>Author</th>
+    <th>Publish Date</th>
+  </tr>
+  <tr>
+    <td>Harry Potter and the Philosopher's Stone</td>
+    <td>J. K. Rowling</td>
+    <td>Jun 26, 1997</td>
+  </tr>
+  <td>The Hobbit</td>
+  <td>J. R. R. Tolkien</td>
+  <td>Sept. 21, 1937</td>
+  </tr>
 </body>
 </html>
