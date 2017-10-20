@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
 <body>
+  <h1> Json and Ajax </h1>
+  <button id="btn">Display a Few of My Favorite Cars</button><br/><br/>
+  <table id="car-info"></table>
+</body>
+</html>
+
 <style>
 h1 {
 	color: white;
@@ -13,7 +19,7 @@ body {
 table {
   margin-left: auto;
   margin-right: auto;
-  border: 2px solid blue;
+  border: 2px solid white;
   border-radius: 8px;
   text-align: center;
 }
@@ -24,8 +30,13 @@ td, th {
     padding: 8px;
 }
 
+tr:nth-child(odd) {
+	color: white;
+    background-color: black;
+}
+
 tr:nth-child(even) {
-    background-color: #dddddd;
+    background-color: grey;
 }
 
 #btn {
@@ -83,12 +94,3 @@ function renderHTML(data) {
   } 
 }
 </script>
-<html>
-<body>
-  <h1> Json and Ajax </h1>
-  <button id="btn">Display a Few of My Favorite Cars</button><br/><br/>
-  <table id="car-info"></table>
-</body>
-</html>
-</body>
-</html>
