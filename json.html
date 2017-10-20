@@ -1,44 +1,94 @@
 <!DOCTYPE html>
 <html>
 <body>
-	<h2>Enter your car's info</h2>
-	<label for="Make">Make:</label> <input type="text" id="Make"><br/><br/>
-	<label for="Model">Model:</label> <input type="text" id="Model"><br/><br/>
-	<label for="Year">Make:</label> <input type="text" id="Year"><br/><br/>
-	<button onclick="parse()">Parse</button>
-	<button onclick="stringify()">Stringify</button>
-	<p id="par">Parse:</p>
-	<p id="string">Stringify:</p>
-	
+<style>
+h1 {
+	color: white;
+}
+
+body {
+  text-align: center;
+  background-image: url("shelby-cobra-wallpapers.jpg");
+}
+table {
+  margin-left: auto;
+  margin-right: auto;
+  border: 2px solid blue;
+  border-radius: 8px;
+  text-align: center;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+#btn {
+  transition: opacity 1.5s ease-out;
+}
+.empty {
+  opacity: 0;
+}
+</style>
 <script>
-	function parse() {
-		var car = getJson();
-		var temp = JSON.stringify(car);
-		var string = JSON.parse(temp);
-		document.getElementById('par').innerHTML = string.Make  + ", " +
-		                                           string.Model + ", " +
-		                                           string.Year;
-	}
+var btn = document.getElementById("btn");
+var count = 0;
+var htmlString =
+  "<tr><th>Make</th><th>Model</th><th>Good Years</th><th>Bad Years</th></tr>";
 
-	function stringify() {
-		var car = getJson()
-		var string = JSON.stringify(car);
-		document.getElementById('string').innerHTML = string;
-    }
+btn.addEventListener("click", function() {
+  var request = new XMLHttpRequest();
+  request.open(
+    "GET",
+    "https://raw.githubusercontent.com/GreenJonah/.github.io/master/carList.json"
+  );
+  request.onload = function() {
+    var data = JSON.parse(request.responseText);
+    renderHTML(data);
+  };
+  request.send(); 
+});
 
-	function getJson() {
-		var make  = document.getElementById('Make').value;
-		var model = document.getElementById('Model').value;
-		var year  = document.getElementById('Year').value;
+function renderHTML(data) {
+  var car = (carContainer = document.getElementById("car-info"));
+  htmlString +=
+    "<tr><td>" +
+    data[count].make +
+    "</td>" +
+    "<td>" +
+    data[count].model +
+    "</td><td>";
 
-		var vehicle = {
-			Make:make,
-			Model:model,
-			Year:year
-		}
-		return vehicle;
-	}
+  for (i = 0; i < data[count].years.good.length; i++) {
+    if (i != 0) htmlString += ", ";
 
+    htmlString += data[count].years.good[i];
+  }
+  htmlString += "</td><td>";
+  for (i = 0; i < data[count].years.bad.length; i++) {
+    if (i != 0) htmlString += ", ";
+    htmlString += data[count].years.bad[i];
+  }
+  htmlString += "</td></tr>";
+  document.getElementById("car-info").innerHTML = htmlString;
+  count++;
+  if (count >= data.length)
+  {
+    document.getElementById("btn").classList.toggle("empty");
+  } 
+}
 </script>
+<html>
+<body>
+  <h1> Json and Ajax </h1>
+  <button id="btn">Display a Few of My Favorite Cars</button><br/><br/>
+  <table id="car-info"></table>
+</body>
+</html>
 </body>
 </html>
