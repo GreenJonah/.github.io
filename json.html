@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<body>
+<body id='site' class='back'>
   <h1> Json and Ajax </h1>
   <button id="btn">Display a Few of My Favorite Cars</button><br/><br/>
   <table id="car-info"></table>
@@ -8,14 +8,42 @@
 </html>
 
 <style>
-h1 {
-	color: white;
-}
+
 
 body {
-  text-align: center;
-  background-image: url("shelby-cobra-wallpapers.jpg");
+  text-align: center;  
 }
+
+.back {
+	text-shadow: 0 0 10px black;
+	color: black;
+	background-image: url("");
+}
+
+.back1 {
+	text-shadow: 0 0 10px white;
+	color: white;
+	background-image: url("shelby-cobra-wallpapers.jpg");
+}
+
+.back2 {
+	color: white;
+	text-shadow: 0 0 10px white;
+	background-image: url("http://horsepowerkings.com/wp-content/uploads/2015/01/03-ford-gt-concept-detroit-1.jpg");
+}
+
+.back3 {
+	text-shadow: 0 0 10px white;
+	color: red;
+	background-image: url("http://www.conceptcarz.com/images/Ferrari/Ferrari-250GT_SWB_3119GT_RM_Monterey-02.jpg");
+}
+
+.back4 {
+	text-shadow: 0 0 10px white;
+	color: red;
+	background-image: url("https://wallpapercave.com/wp/3bBIrQY.jpg");
+}
+
 table {
   margin-left: auto;
   margin-right: auto;
@@ -88,6 +116,8 @@ function renderHTML(data) {
   htmlString += "</td></tr>";
   document.getElementById("car-info").innerHTML = htmlString;
   count++;
+  document.getElementById('site').setAttribute("class", "back" + count);
+ 
   if (count >= data.length)
   {
     document.getElementById("btn").classList.toggle("empty");
