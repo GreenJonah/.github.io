@@ -1,17 +1,17 @@
 [
-   {
-	 "make" : "Ford",
-	 "model" : "GT",
-	 "years" : {
-	 	"good" : ["1966", "2004 - 2017" ],
-	 	"bad" : ["none"]
-	 }
-	},
 	{
 	 "make" : "Shelby",
 	 "model" : "Cobra",
 	 "years" : {
 	 	"good" : ["1962 - 1963"],
+	 	"bad" : ["none"]
+	 }
+	},
+	 {
+	 "make" : "Ford",
+	 "model" : "GT",
+	 "years" : {
+	 	"good" : ["1966", "2004 - 2017" ],
 	 	"bad" : ["none"]
 	 }
 	},
