@@ -1,5 +1,155 @@
 <!DOCTYPE html>
 <html>
-<body>
+<head>
+  <title>LocalStorage</title>
+<style>
+	body {
+	  text-align: center;
+	  font-family: Charcoal;
+	  font-weight: bold;
+	  color: black;
+	  background: url("background.jpg");
+	}
+
+	td {
+		padding: 5px;
+		padding-bottom: 10px;
+	}
+
+	#title {
+	  font-size: 50px;
+	  color: #ff6600; 
+	  text-shadow: 0 0 4px black;
+	}
+
+	.easyRead:nth-child(even) {
+	  background-color: #dddddd;
+	}
+
+	#display {
+	  border: 1px solid black;
+	  text-align: center;
+	  padding: 8px;
+	  margin-left: auto;
+	  margin-right:auto;
+	  background: #ff6600;
+	}
+
+	.enter {
+	  margin-left: auto;
+	  margin-right: auto;
+	  text-align: center;
+	  border: 1px solid black;
+	  background: #ff6600;
+	}
+
+	.input:focus {
+	  box-shadow: 0px 0px 32px black;
+	}
+</style>
+
+<script>
+	function rider() {
+	  this.firstName;
+	  this.lastName;
+	  this.email;
+	  this.password;
+	  this.bikeSize;
+	  this.terrain;
+	}
+
+	function new_rider(){
+	  var new_rider = new rider();
+	  new_rider.firstName = document.getElementById('firstName').value;
+	  new_rider.lastName = document.getElementById('lastName').value;
+	  new_rider.email = document.getElementById('email').value;
+	  new_rider.password = document.getElementById('password').value;
+	  new_rider.bikeSize = document.getElementById('bike').value;
+	  new_rider.terrain = document.getElementById('terrain').value;
+	  
+	  var rider_json = JSON.stringify(new_rider);
+	  localStorage.setItem("rider", rider_json);
+	  get_rider(); 
+	}
+
+	function clearlocal() {
+		localStorage.clear();
+		window.location.reload();
+	}
+
+	function get_rider() {
+	  rider_json = localStorage.getItem("rider");
+	  var rider  = JSON.parse(rider_json);
+	  var table = "<td>"+rider.firstName+"</td><td>"+rider.lastName+"</td><td>"+rider.email+"</td><td>"+rider.password+"</td><td>"+rider.bikeSize+"</td><td>"+rider.terrain+"</td><td><input type=\"button\" onclick=\"clearlocal()\" value=\"clear info\"</td>";
+	  document.getElementById('1').innerHTML = table;
+	}
+</script>
+</head>
+<body onload="get_rider()">
+
+<p id="title">Endurocross 2018 Registration</p>
+  <form action="">
+  <table class="enter">
+  <tr> 
+    <td>
+      <label for="firstName">First Name:</label></br>
+      <input class="input" type="text" id="firstName">
+    </td>
+    <td>
+      <label for="lastName">Last Name:</label></br>
+      <input class="input" type="text" id="lastName">
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <label for="Email">Email:</label></br>
+      <input class="input" type="text" id="email">
+    </td>
+    <td>
+      <label for="password">Password:</label></br>
+      <input class="input" type="text" id="password">
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <label for="bikeSize">Bike Size:</label></br>
+      <select class="input" id="bike">
+      <option value="450">450</option>
+      <option value="350">350</option>
+      <option value="300">300</option>
+      <option value="250">250</option>
+      <option value="125">125</option>
+      </select>
+    </td>
+    <td>
+      <label for="terrainType">Select a Terrain:</label></br>
+      <select class="input" id = "terrain">
+      <option value="Mountain">Mountain</option>
+      <option value="Desert">Desert</option>
+      <option value="Rocks n' logs">Rocks n' Logs</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <input type="button" onclick="new_rider()" value="submit"></button>
+    </td>
+    <td>  
+      <button type="reset" id="clear">Clear Form</button>
+    </td>
+  </tr>
+  </table></br>
+</form>
+<table id="display">
+  <tr class="easyRead">
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+    <th>Password</th>
+    <th>Bikes Size</th>
+    <th>Terrain Selected</th>
+  </tr>
+  <tr id='1' class="easyRead">
+  </tr>
+</table>
 </body>
-</html>
