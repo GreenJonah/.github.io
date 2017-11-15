@@ -1,5 +1,135 @@
 <!DOCTYPE html>
 <html>
-<body>
-</body>
+<head>
+  <title>DOM/Events</title>
+  <style media="screen">
+  body {
+text-align: center;
+color: yellow;
+text-shadow: 6px 6px 16px black;
+background: url('http://wallpaperrs.com/uploads/photography/road-appealing-hd-wallpaper-142944088710.jpg');
+}
+
+img {
+  position: absolute;
+  height: 150px;
+  width: 200px;
+}
+
+.loadIn {
+border-style: solid;
+border-width: 2px 10px 4px 20px;
+margin-left: auto;
+margin-right: auto;
+}
+
+div {
+margin-left: auto;
+margin-right: auto;
+}
+
+.onoff {
+background-color: blue;
+width:90px;
+height:20px;
+padding:40px;
+}
+
+.clicked {
+animation-name: myframes;
+animation-duration: 2s;
+animation-timing-function: linear;
+animation-delay: 0s;
+animation-iteration-count: infinite;
+animation-fill-mode: forwards;
+animation-play-state: running;
+}
+
+@keyframes myframes {
+from {transform: perspective( 600px ) rotateY( 0deg ); }
+to {transform: perspective( 600px ) rotateY( 360deg ); }
+}
+  </style>
+  <script type="text/javascript">
+  function load() {
+var title = document.createElement("div");
+var t = document.createTextNode("Javascript Events");
+title.appendChild(t);
+document.getElementById('loaded').appendChild(t);
+
+
+// Code for touch events
+var mustachio = document.getElementById('gif');
+
+  mustachio.addEventListener('touchmove', function (ev) {
+
+      var touchLocation = ev.targetTouches[0];
+      mustachio.style.left = touchLocation.pageX + 'px';
+      mustachio.style.top = touchLocation.pageY + 'px';
+ })
+  mustachio.addEventListener('touchend', function (ev) {
+      var x = parseInt(mustachio.style.left);
+      var y = parseInt(mustachio.style.top);
+}
+)}
+
+function clicked() {  document.getElementById('click').insertAdjacentHTML
+('beforeend', `<table id="books" class="loadIn">
+<tr>
+  <th>Book</th>
+  <th>Author</th>
+  <th>Publish Date</th>
+</tr>
+<tr>
+  <td>Harry Potter and the Philosopher's Stone</td>
+  <td>J. K. Rowling</td>
+  <td>Jun 26, 1997</td>
+</tr>
+<td>The Hobbit</td>
+<td>J. R. R. Tolkien</td>
+<td>Sept. 21, 1937</td>
+</tr></table><br/>`);
+}
+
+function remove() {
+document.getElementById('click').removeChild(document.getElementById('books'));
+}
+
+function validate(id) {
+var para = document.createElement("p");
+var node = document.createTextNode(`${id.value}: was added to the form`);
+para.appendChild(node);
+
+var element = document.getElementById("form");
+element.appendChild(para);
+
+}
+
+function mDown(obj) {
+  obj.classList.toggle('clicked');
+}
+
+function mUp(obj) {
+  obj.classList.toggle('clicked');
+}
+  </script>
+</head>
+<body onload='load()'>
+    <h1 id='loaded'></h1>
+    <h3 id='click'>On Click</h3>
+    <button onclick='clicked()'>Load in table</button>
+    <button onclick='remove()'>Remove table</button>
+    <h3 id='change'>On Change<h3>
+      <div id='form'>
+      First Name:
+      <input id='in1'onchange='validate(in1)'><br/><br/>
+      Last Name:
+      <input id='in2' onchange='validate(in2)'>
+      </div>
+    <h3 id='over'>Mouse Down and Mouse Up</h3>
+      <div class='onoff'onmousedown="mDown(this)" onmouseup="mUp(this)">Click Me</div>
+
+      <h3 id='mobile'>If you are on a mobile device you can drag this car.</h3>
+       <img id="gif" src="http://www.clker.com/cliparts/d/5/b/4/11954344841113126685Machovka_yellow_car.svg.hi.png">
+  </body>
 </html>
