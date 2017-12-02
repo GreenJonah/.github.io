@@ -21,6 +21,9 @@
           <option value="2">2</option>
           <option value="3">3</option>
         </select>
+
+        <div id='exDisplay'></div>
+
     <p class="subTitle">Intake</p>
       <input id="inTolerance" class="input" placeholder="Specified Tolerance">
       <br/>
@@ -30,10 +33,12 @@
         <option value="2">2</option>
         <option value="3">3</option>
       </select>
-      <div id="test"></div>
+      <div id="inDisplay"></div>
+      <button class="btn" id='btn' onclick="getValues()">Calculate New
+				Shim Thickness</button><br/><br/>
+
+        <div id='test'></div>
 </div>
   </div>
-  </div>
-
   </body>
 </html>
