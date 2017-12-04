@@ -66,6 +66,7 @@ function addInShims() {
 
   // Remove all of the previous children
   var myNode = document.getElementById("inDisplay");
+
   while (myNode.firstChild) {
       myNode.removeChild(myNode.firstChild);
   }
@@ -88,31 +89,58 @@ function addInShims() {
 	}
 }
 
+function CustomAlert(){
+    this.render = function(dialog){
+        var winW = window.innerWidth;
+        var winH = window.innerHeight;
+        var dialogoverlay = document.getElementById('dialogoverlay');
+        var dialogbox = document.getElementById('dialogbox');
+        dialogoverlay.style.display = "block";
+        dialogoverlay.style.height = winH+"px";
+        dialogbox.style.left = (winW/2) - (337 * .5)+"px";
+        dialogbox.style.top = (winH/2) - (150 * .5)+ "px";
+        dialogbox.style.display = "block";
+        document.getElementById('dialogboxhead').innerHTML = "Shim Calculator";
+        document.getElementById('dialogboxbody').innerHTML = dialog;
+        document.getElementById('dialogboxfoot').innerHTML = '<button onclick="Alert.ok()">OK</button>';
+    }
+	this.ok = function(){
+		document.getElementById('dialogbox').style.display = "none";
+		document.getElementById('dialogoverlay').style.display = "none";
+	}
+}
+var Alert = new CustomAlert();
+
 // Puts the new values on the screen
 function displayNew(ex1, ex2, ex3, in1, in2, in3) {
-	location.href = 'newShims.html';
-		if (ex1 != 0.00) {
-			document.getElementById('exNewDisplay').innerHTML = ex1;
+		if (ex1 == 0.00) {
+			ex1 = '';
 		}
-		if (ex2 != 0.00) {
+		if (ex2 == 0.00) {
+			ex2 = '';
+		}
+		if (ex3 == 0.00) {
+			ex3 = '';
+		}
+		if (in1 == 0.00) {
+			in1 = '';
+		}
+		if (in2 == 0.00) {
+			in2 = '';
+		}
+		if (in3 == 0.00) {
+			in3 = '';
+		}
 
-		}
-		if (ex3 != 0.00) {
-
-		}
-		if (in1 != 0.00) {
-
-		}
-		if (in2 != 0.00) {
-
-		}
-		if (in3 != 0.00) {
-
-		}
+		Alert.render(`Exhaust<br/> ${ex1} ${ex2} ${ex3}<br/><br/>
+									Intake<br/> ${in1} ${in2} ${in3}`);
 }
 
 // Calculates the values for the new shim and returns the value
 function calculate(gap, tolerance, thickness) {
+	// Dont display a negative tolorance if a shim is left empty
+	if (gap == 0.00 || thickness == 0.00)
+		return 0.00;
   shim = ((Number(gap) - Number(tolerance)) + Number(thickness));
   return shim.toFixed(4);
 }
@@ -163,12 +191,12 @@ function getValues() {
 	if (inNum >= 2) {
 		var gap = document.getElementById('inGap1').value;
 		var thickness = document.getElementById('inThickness1').value;
-		in1 = calculate(gap, inTolerance, thickness)
+		in2 = calculate(gap, inTolerance, thickness)
 	}
 	if (inNum >= 3) {
 		var gap = document.getElementById('inGap2').value;
 		var thickness = document.getElementById('inThickness2').value;
-		in1 = calculate(gap, inTolerance, thickness)
+		in3 = calculate(gap, inTolerance, thickness)
 	}
 
 	displayNew(ex1, ex2, ex3, in1, in2, in3);

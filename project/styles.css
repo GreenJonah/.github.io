@@ -32,7 +32,7 @@
   margin-right: 10px;
   width: 95%;
   font-size: 20px;
-  color:#767676
+  color: #767676;
 }
 
 select{
@@ -51,9 +51,22 @@ select{
 
 .valve {
   margin-right: auto;
-  width: 30%;
+  width: 32%;
   display: inline-block;
   margin-left: auto;
+  animation-name: myframes;
+  animation-duration: 500ms;
+  animation-timing-function: ease-in;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+}
+
+@keyframes myframes {
+  0%  { opacity: .0; transform: rotate(0deg);}
+  65% { opacity: .1; transform: perspective( 600px ) rotateY( 180deg );}
 }
 
 .center {
@@ -62,8 +75,33 @@ select{
 }
 
 .btn {
-  font-size: 15px;
-  margin-left: auto;
-  margin-right: auto;
+  position: relative;
   text-align: center;
 }
+
+#btn {
+  font-size: 20px;
+}
+
+#dialogoverlay{
+	display: none;
+	opacity: .8;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	background: #FFF;
+	width: 100%;
+	z-index: 10;
+}
+#dialogbox{
+	display: none;
+	position: fixed;
+	background: #000;
+	border-radius:7px;
+	width:337px;
+	z-index: 10;
+}
+#dialogbox > div{ background:#FFF; margin:8px; }
+#dialogbox > div > #dialogboxhead{ background: #99ff33; font-size:19px; padding:10px; color:black; }
+#dialogbox > div > #dialogboxbody{ background:#333; padding:20px; color:#FFF; }
+#dialogbox > div > #dialogboxfoot{ background: #99ff33;  padding:10px; text-align:right; }
