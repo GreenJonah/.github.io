@@ -1,7 +1,7 @@
 .screen {
   background-image: url("shim_back_ground.jpg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 115% 115%;
 }
 
 .title {
