@@ -54,6 +54,7 @@ select{
   width: 32%;
   display: inline-block;
   margin-left: auto;
+  box-shadow: 0px 4px 32px rgba(0,0,0,.1);
   animation-name: myframes;
   animation-duration: 500ms;
   animation-timing-function: ease-in;
@@ -65,8 +66,8 @@ select{
 }
 
 @keyframes myframes {
-  0%  { opacity: .0; transform: rotate(0deg);}
-  65% { opacity: .1; transform: perspective( 600px ) rotateY( 180deg );}
+  0%  { opacity: 0; transform: rotate(0deg);}
+  65% { opacity: 1; transform: perspective( 600px ) rotateY( 180deg );}
 }
 
 .center {
@@ -100,7 +101,9 @@ select{
 	border-radius:7px;
 	width:337px;
 	z-index: 10;
+  box-shadow: 0px 4px 32px rgba(0,0,0,0.5);
 }
+
 #dialogbox > div{ background:#FFF; margin:8px; }
 #dialogbox > div > #dialogboxhead{ background: #99ff33; font-size:19px; padding:10px; color:black; }
 #dialogbox > div > #dialogboxbody{ background:#333; padding:20px; color:#FFF; }

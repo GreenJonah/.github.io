@@ -71,6 +71,9 @@ function addInShims() {
       myNode.removeChild(myNode.firstChild);
   }
 
+	//reset i
+	i = 0 ;
+
 	if (numValves == 1) {
 	    i = 0;
 	    document.getElementById('inDisplay').insertAdjacentHTML('beforeend', inValve[i]);
@@ -98,11 +101,12 @@ function CustomAlert(){
         dialogoverlay.style.display = "block";
         dialogoverlay.style.height = winH+"px";
         dialogbox.style.left = (winW/2) - (337 * .5)+"px";
-        dialogbox.style.top = (winH/2) - (150 * .5)+ "px";
+        dialogbox.style.top = (winH/2) - (250 * .5)+ "px";
         dialogbox.style.display = "block";
         document.getElementById('dialogboxhead').innerHTML = "Shim Calculator";
         document.getElementById('dialogboxbody').innerHTML = dialog;
         document.getElementById('dialogboxfoot').innerHTML = '<button onclick="Alert.ok()">OK</button>';
+
     }
 	this.ok = function(){
 		document.getElementById('dialogbox').style.display = "none";
